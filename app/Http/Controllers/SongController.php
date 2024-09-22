@@ -30,48 +30,23 @@ class SongController extends Controller
         $data['genre'] = Genre::all();
         return view('pertemuan2.song.create',compact('data'));
     }
-    
 
-    public function store(Request $request)
+    public function store(NewSongRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string',
-            'artist_id' => 'required|exists:singer,id',
-            // 'album' => 'required|string',
-            'albm_id' => 'required|exists:album,id',
-            'year' => 'nullable|integer',
-            'duration' => 'nullable|integer',
-            // 'music_company' => 'required|string',
-            'rl_id' => 'required|exists:recordlabel,id',
-            'description' => 'nullable|string',
-            'genre' => 'required|array', // Ensure genre is an array
-            'genre.*' => 'exists:genre,id' // Ensure each genre ID exists in the genres table
-        ]);
-    
-        $song = Song::create([
-            'title' => $request->input('title'),
-            'artist_id' => $request->input('artist_id'),
-            // 'album' => $request->input('album'),
-            'albm_id' => $request->input('albm_id'),            
-            'year' => $request->input('year'),
-            'duration' => $request->input('duration'),
-            // 'music_company' => $request->input('music_company'),            
-            'rl_id' => $request->input('rl_id'),    
-            'description' => $request->input('description'),
-        ]);
-    
-        // Attach genres to the song
+        $validatedData = $request->validated();
+        unset($validatedData['genre']);
+        $song = Song::create($validatedData);
         $song->genres()->attach($request->input('genre'));
-    
-        return redirect()->route('crud-song.index')->with('success', 'Song added successfully.');
+
+        return redirect()->route('crud-song.index')->with('success', 'Song "' . $song->title . '" sukses ditambahkan.');
     }
-    
 
     public function show(Song $song)
     {
         $data['song'] = $song;
         return view('pertemuan2.song.show', compact('data'));
     }
+
     public function edit(Song $song) 
     {
         $data['song'] = $song;
@@ -79,7 +54,7 @@ class SongController extends Controller
         $data['genre'] = Genre::all();
         return view('pertemuan2.song.edit', compact('data'));
     }
-    
+
     public function update(UpdateSongRequest $request, Song $song)
     {
         $validatedData = $request->validated();

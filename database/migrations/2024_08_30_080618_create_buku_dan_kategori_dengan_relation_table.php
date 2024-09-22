@@ -11,35 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Tabel song
         Schema::create('song', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->foreignId('artist_id')->constrained('singer')->onDelete('cascade'); // Foreign key to singer
-            $table->foreignId('albm_id')->constrained('album')->onDelete('cascade'); // Foreign key to singer
-            $table->foreignId('rl_id')->constrained('recordlabel')->onDelete('cascade'); // Foreign key to singer
-            // $table->string('album');
-            $table->year('year')->nullable();
-            $table->integer('duration')->nullable();
-            // $table->string('music_company')->unique();
-            $table->text('description')->nullable();
-            $table->timestamps();
+            $table->string('title'); // Title song
+            $table->string('artist'); // Nama artist
+            $table->string('album'); // Nama album
+            $table->year('year')->nullable(); // Tahun terbit
+            $table->integer('duration')->nullable(); // Jumlah halaman
+            $table->string('music_company')->unique(); // MUSIC_COMPANY song
+            $table->text('description')->nullable(); // Description song
+            $table->timestamps(); // Timestamps created_at dan updated_at
         });
 
-        // Tabel genre
         Schema::create('genre', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->timestamps();
         });
-
-        // Pivot table song_genre
+        
         Schema::create('song_genre', function (Blueprint $table) {
             $table->id();
             $table->foreignId('song_id')->constrained('song')->onDelete('cascade');
             $table->foreignId('genre_id')->constrained('genre')->onDelete('cascade');
             $table->timestamps();
         });
+        
+        
     }
 
     /**
@@ -47,8 +44,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('song_genre');
-        Schema::dropIfExists('genre');
-        Schema::dropIfExists('song');
+        Schema::dropIfExists('song_genre'); // Drop the pivot table first
+        Schema::dropIfExists('genre');      // Then drop the genre table
+        Schema::dropIfExists('song');          // Finally, drop the song table
     }
+    
 };

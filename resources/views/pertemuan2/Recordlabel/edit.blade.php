@@ -1,26 +1,26 @@
 @extends('layout.base')
 
-@section('title', 'Edit Recordlabel')
+@section('title', 'Edit Artist')
 
 @section('content')
 
-    <form class="form-group" action="{{ route('crud-recordlabel.update', $recordlabel->id) }}" method="post">
+    <form class="form-group" action="{{ route('crud-singer.update', $singer->id) }}" method="post">
         @csrf
         <label for="nama">Name</label>
-        <input type="text" class="form-control @error('recordlabel') is-invalid @enderror" id="nama"
-            name="nama" value="{{ $recordlabel->nama }}" required>
-        @error('recordlabel')
+        <input type="text" class="form-control @error('artist') is-invalid @enderror" id="nama"
+            name="nama" value="{{ $singer->nama }}" required>
+        @error('artist')
             <strong>{{ $message }}</strong>
         @enderror
 
-        <label for="country">Country</label>
-        <input type="text" class="form-control @error('recordlabel') is-invalid @enderror" id="country"
-            name="country" value="{{ $recordlabel->country }}" required>
-        @error('recordlabel')
+        <label for="bio">Bio</label>
+        <input type="text" class="form-control @error('artist') is-invalid @enderror" id="bio"
+            name="bio" value="{{ $singer->bio }}" required>
+        @error('artist')
             <strong>{{ $message }}</strong>
         @enderror
 
-        <button id="submitBtn" type="submit" class="btn btn-primary">Edit Recordlabel</button>
+        <button id="submitBtn" type="submit" class="btn btn-primary">Edit Singer</button>
     </form>
 
 @endsection

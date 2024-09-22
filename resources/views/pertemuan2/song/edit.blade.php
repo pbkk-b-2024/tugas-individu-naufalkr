@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label for="artist">Artist</label>
                             <input type="text" class="form-control @error('artist') is-invalid @enderror" id="artist"
-                                name="artist" value="{{ old('artist', $data['song']->artist->nama) }}" required>
+                                name="artist" value="{{ old('artist', $data['song']->artist) }}" required>
                             @error('artist')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
                         <div class="form-group">
                             <label for="album">Album</label>
                             <input type="text" class="form-control @error('album') is-invalid @enderror"
-                                id="album" name="album" value="{{ old('album', $data['song']->albm->nama) }}"
+                                id="album" name="album" value="{{ old('album', $data['song']->album) }}"
                                 required>
                             @error('album')
                                 <span class="invalid-feedback" role="alert">
@@ -84,10 +84,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="recordlabel">Record Label</label>
-                            <input type="text" class="form-control @error('recordlabel') is-invalid @enderror" id="recordlabel"
-                                name="recordlabel" value="{{ old('recordlabel', $data['song']->rl->nama) }}" required>
-                            @error('recordlabel')
+                            <label for="music_company">Record Label</label>
+                            <input type="text" class="form-control @error('music_company') is-invalid @enderror" id="music_company"
+                                name="music_company" value="{{ old('music_company', $data['song']->music_company) }}" required>
+                            @error('music_company')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

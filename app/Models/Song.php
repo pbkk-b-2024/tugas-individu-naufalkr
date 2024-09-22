@@ -10,49 +10,23 @@ class Song extends Model
 {
     use HasFactory;
     use Searchable;
-
+    
     protected $table = 'song';
 
     protected $fillable = [
-        'title',           
-        'artist_id',       
-        // 'album',       
-        'albm_id',        
-        'year',    
-        'duration',  
-        // 'music_company',  
-        'rl_id',  
-        'description',
+        'title',           // Title of the book
+        'artist',         // Author of the book
+        'album',        // Publisher
+        'year',    // Year of publication
+        'duration',  // Number of pages
+        'music_company',            // MUSIC_COMPANY number
+        'genre',        // Category (if not using the pivot table relationship)
+        'description',       // Description of the book
     ];
 
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'song_genre', 'song_id', 'genre_id');
-    }
-
-    public function artist()
-    {
-        return $this->belongsTo(Singer::class, 'artist_id'); // Relasi ke Singer
-    }
-
-    public function albm()
-    {
-        return $this->belongsTo(Album::class, 'albm_id'); // Relasi ke Singer
-    }
-
-    public function rl()
-    {
-        return $this->belongsTo(Recordlabel::class, 'rl_id'); 
-    }
-
-    public function playlists()
-    {
-        return $this->belongsToMany(Playlist::class, 'playlist_song', 'song_id', 'playlist_id');
-    }
-    
-    public function favorites()
-    {
-        return $this->belongsToMany(Favorite::class, 'favorite_song', 'song_id', 'favorite_id');
+        return $this->belongsToMany(Genre::class, 'song_genre','song_id', 'genre_id'); // Explicitly define the pivot table name
     }
     
 }

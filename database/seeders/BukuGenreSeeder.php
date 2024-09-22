@@ -4,13 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\Song;
 use App\Models\Genre;
-use App\Models\Singer;
-use App\Models\Album;
-use App\Models\Recordlabel;
+use App\Models\Singer; // Import model Singer
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
-class BukuGenreSeeder extends Seeder  
+class BukuGenreSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -53,21 +51,19 @@ class BukuGenreSeeder extends Seeder
             $genreIds[] = $genreModel->id;
         }
 
-        // Ambil semua ID penyanyi dari tabel singers
-        $singerIds = Singer::pluck('id')->toArray();
-        $albumIds = Album::pluck('id')->toArray();
-        $recordlabelIds = Recordlabel::pluck('id')->toArray();
+        // Ambil semua nama artis dari tabel singers
+        $singerNames = Singer::pluck('nama')->toArray();
 
         // Seed Song Table and attach Genre
         foreach (range(1, 100) as $index) {
             $song = Song::create([
-                'title' => $faker->words($faker->numberBetween(2, 4), true), // Judul lagu antara 2-4 kata
-                'artist_id' => $faker->randomElement($singerIds), // ID penyanyi dari tabel singer
-                'albm_id' => $faker->randomElement($albumIds), // ID album dari tabel album
-                'year' => $faker->year($max = 'now'), // Tahun rilis yang acak dari masa lalu hingga sekarang
-                'duration' => $faker->numberBetween(180, 420), // Durasi lagu antara 3 hingga 7 menit dalam detik
-                'rl_id' => $faker->randomElement($recordlabelIds), // ID label rekaman dari tabel record label
-                'description' => $faker->realText($faker->numberBetween(50, 150)), // Deskripsi singkat antara 50-150 karakter
+                'title' => $faker->sentences($faker->numberBetween(1, 5), true), // 1-5 kalimat untuk title
+                'artist' => $faker->randomElement($singerNames), // Ambil nama artis dari tabel singers
+                'album' => $faker->sentences($faker->numberBetween(1, 5), true), // 1-5 kalimat untuk album
+                'year' => $faker->year,
+                'duration' => $faker->numberBetween(100, 500),
+                'music_company' => $faker->company,
+                'description' => $faker->paragraph,
             ]);
 
             // Assign 1 to 3 random genres to each song

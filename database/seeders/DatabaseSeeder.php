@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         $this->call(SingerSeeder::class);
-        $this->call(AlbumSeeder::class);
-        $this->call(RecordlabelSeeder::class);        
         $this->call(BukuGenreSeeder::class);
-        $this->call(PlaylistSeeder::class);
-        // $this->call(FavoriteSeeder::class); 
     }
 }

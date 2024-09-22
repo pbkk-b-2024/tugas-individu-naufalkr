@@ -8,9 +8,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <!-- <label for="id">ID</label>
-                        <p id="id">{{ $data['song']->id }}</p> -->                        
-                        <img src="{{ $data['song']->albm->image_url }}" alt="Random Image" style="border: none; width: 5cm;height: 5cm;" class="img-thumbnail">  
+                        <label for="id">ID</label>
+                        <p id="id">{{ $data['song']->id }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -25,13 +24,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="artist">Artist</label>
-                        <p id="artist">{{ $data['song']->artist->nama }}</p>
+                        <p id="artist">{{ $data['song']->artist }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="album">Album</label>
-                        <p id="album">{{ $data['song']->albm->nama }}</p>
+                        <p id="album">{{ $data['song']->album }}</p>
                     </div>
                 </div>
             </div>
@@ -54,8 +53,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="recordlabel">Record Label</label>
-                        <p id="recordlabel">{{ $data['song']->rl->nama }}</p>
+                        <label for="music_company">MUSIC_COMPANY</label>
+                        <p id="music_company">{{ $data['song']->music_company }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
