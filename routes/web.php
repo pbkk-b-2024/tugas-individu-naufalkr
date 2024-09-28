@@ -7,6 +7,8 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\RecordlabelController;
 use App\Http\Controllers\PlaylistController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ShowController;
+use App\Http\Controllers\EpisodeController;
 use App\Models\Genre;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -15,6 +17,11 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/api/docs', function () {
+    return redirect('/api/documentation');
+})->name('api-page');
+
 
 
 // Route::get('/', function () {
@@ -46,7 +53,7 @@ Route::get('/', function () {
 // });
 
 Route::get('/dashboard', function () {
-    return view('layout.base');
+    return view('layout.base3');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -85,6 +92,17 @@ Route::prefix('/pertemuan2')->group(function(){
     Route::get('/crud-album/{id}/show', [AlbumController::class, 'show'])->name('crud-album.show');
 
     
+
+    Route::get('/crud-show', [ShowController::class, 'tampil'])->name('crud-show.tampil');
+    Route::get('/crud-show/tambah', [ShowController::class, 'tambah'])->name('crud-show.tambah');
+    Route::post('/crud-show/submit', [ShowController::class, 'submit'])->name('crud-show.submit');
+    Route::get('/crud-show/edit/{id}', [ShowController::class, 'edit'])->name('crud-show.edit');
+    Route::post('/crud-show/update/{id}', [ShowController::class, 'update'])->name('crud-show.update');
+    Route::post('/crud-show/delete/{id}', [ShowController::class, 'delete'])->name('crud-show.delete');
+    // Route to show tracks for a specific show
+    Route::get('/crud-show/{id}/show', [ShowController::class, 'show'])->name('crud-show.show');
+
+    
     
     Route::get('/crud-recordlabel', [RecordlabelController::class, 'tampil'])->name('crud-recordlabel.tampil');
     Route::get('/crud-recordlabel/tambah', [RecordlabelController::class, 'tambah'])->name('crud-recordlabel.tambah');
@@ -107,9 +125,11 @@ Route::prefix('/pertemuan2')->group(function(){
     Route::get('/playlist/{id}', [PlaylistController::class, 'show'])->name('crud-playlist.show');
     Route::post('/playlist/{playlistId}/remove-song/{songId}', [PlaylistController::class, 'removeSong'])
      ->name('crud-playlist.removeSong');
-
-
+    Route::post('/crud-playlist/submitadmin', [PlaylistController::class, 'submitadmin'])->name('crud-playlist.submitadmin');
+    Route::get('/crud-playlist/tambahadmin', [PlaylistController::class, 'tambahadmin'])->name('crud-playlist.tambahadmin');
     
+
+    Route::resource('/crud-episode', EpisodeController::class)->parameters(['crud-episode' => 'episode']);
     
 
     // Route::resource('/crud-temp')->(['crud-genre' => 'genre']);

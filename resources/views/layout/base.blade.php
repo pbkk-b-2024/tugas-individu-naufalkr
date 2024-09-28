@@ -16,11 +16,11 @@
         {{-- <x-menu-item title="Tambah Artist" icon="fas fa-plus-circle" :href="route('crud-singer.tambah')" :active="request()->routeIs('crud-singer.tambah')">
         </x-menu-item> --}}
 
-        <x-menu-item title="Genre" icon="fas fa-list" :href="route('crud-genre.index')" :active="request()->routeIs('crud-genre.index')">
+        <!-- <x-menu-item title="Genre" icon="fas fa-list" :href="route('crud-genre.index')" :active="request()->routeIs('crud-genre.index')">
         </x-menu-item>
         {{-- 
         <x-menu-item title="Tambah Genre" icon="fas fa-plus-circle" :href="route('crud-genre.create')" :active="request()->routeIs('crud-genre.create')">
-        </x-menu-item> --}}
+        </x-menu-item> --}} -->
 
         <x-menu-item title="Album" icon="fas fa-list" :href="route('crud-album.tampil')" :active="request()->routeIs('crud-album.tampil')">
         </x-menu-item>
@@ -49,6 +49,22 @@
         {{-- <x-menu-item title="Tambah Favorite" icon="fas fa-plus-circle" :href="route('crud-favorite.tambah')" :active="request()->routeIs('crud-favorite.tambah')">
         </x-menu-item> --}}
         @endrole
+
+        <x-menu-item title="Show" icon="fas fa-list" :href="route('crud-show.tampil')" :active="request()->routeIs('crud-show.tampil')">
+        </x-menu-item>
+
+        {{-- <x-menu-item title="Tambah Show" icon="fas fa-plus-circle" :href="route('crud-show.tambah')" :active="request()->routeIs('crud-show.tambah')">
+        </x-menu-item> --}}
+
+        <x-menu-item title="Episode" icon="fas fa-list" :href="route('crud-episode.index')" :active="request()->routeIs('crud-episode.index')">
+        </x-menu-item>
+
+        {{-- <x-menu-item title="Tambah episode" icon="fas fa-plus-circle" :href="route('crud-episode.create')" :active="request()->routeIs('crud-episode.create')">
+        </x-menu-item> --}}
+        
+        
+        <x-menu-item title="REST API" icon="fas fa-list" :href="route('api-page')" :active="request()->routeIs('api-page')">
+        </x-menu-item>
 
         <!-- <x-menu-item title="Album" icon="fas fa-list" :href="route('temp')" :active="request()->routeIs('temp')">
         </x-menu-item> -->
