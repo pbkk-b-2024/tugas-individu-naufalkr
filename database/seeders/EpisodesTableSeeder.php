@@ -27,7 +27,6 @@ class EpisodesTableSeeder extends Seeder
             '4SgmT9ppqzPs70go6p1wWi',
             '5pC8KcAn0UcCa1VZ8hQkN9', 
             '5T5nd4LNIwry6r3xxE3e8j',
-            '3NSZFXwP3DF1OZKucpDFZK',
             '2UUqPLyLFBjHcaOE75i3cs', 
             '06PnBaAA89FU8C8IGBBu7L',
             '1aId1wEkAnRwZiE2IrjyvX',
